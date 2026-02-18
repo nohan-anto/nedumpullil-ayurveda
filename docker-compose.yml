@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  nedumpullil-ayurveda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nedumpullil-ayurveda
+    ports:
+      - "8080:80"
+    restart: unless-stopped
