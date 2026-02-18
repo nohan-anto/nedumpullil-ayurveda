@@ -1,0 +1,59 @@
+.logo span {
+  color: var(--accent-color);
+  font-family: var(--heading-font);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-left: 8px;
+}
+
+/* Enhanced Mobile Menu Styles */
+@media (max-width: 1199px) {
+  .mobile-nav-active .navmenu ul {
+    background-color: var(--background-color);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    font-size: 20px;
+    padding: 18px 25px;
+    font-weight: 600;
+  }
+
+  .navmenu .active {
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+    color: var(--accent-color);
+  }
+
+  .mobile-nav-toggle {
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .mobile-nav-toggle:hover {
+    color: var(--accent-color);
+  }
+
+  .navmenu ul li {
+    border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  }
+
+  .navmenu ul li:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Desktop hover effects */
+@media (min-width: 1200px) {
+  .navmenu a {
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  .navmenu li:hover > a,
+  .navmenu .active {
+    color: var(--nav-hover-color);
+  }
+}

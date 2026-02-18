@@ -1,0 +1,39 @@
+<header id="header" class="header d-flex align-items-center position-relative">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+    <a routerLink="/" class="logo d-flex align-items-center">
+      <img src="assets/img/logo.svg" alt="Nedumpullil Ayurveda">
+      <span>Nedumpullil Ayurveda</span>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileNav()">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active" (click)="closeMobileNav()">About Us</a></li>
+        <li><a routerLink="/services" routerLinkActive="active" (click)="closeMobileNav()">Our Services</a></li>
+        <li><a routerLink="/testimonials" routerLinkActive="active" (click)="closeMobileNav()">Testimonials</a></li>
+        <li><a routerLink="/blog" routerLinkActive="active" (click)="closeMobileNav()">Blog</a></li>
+        <!-- <li class="dropdown"><a href="#" (click)="toggleDropdown($event)"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <ul>
+            <li><a href="#" (click)="closeMobileNav()">Dropdown 1</a></li>
+            <li class="dropdown"><a href="#" (click)="toggleDropdown($event)"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="#" (click)="closeMobileNav()">Deep Dropdown 1</a></li>
+                <li><a href="#" (click)="closeMobileNav()">Deep Dropdown 2</a></li>
+                <li><a href="#" (click)="closeMobileNav()">Deep Dropdown 3</a></li>
+                <li><a href="#" (click)="closeMobileNav()">Deep Dropdown 4</a></li>
+                <li><a href="#" (click)="closeMobileNav()">Deep Dropdown 5</a></li>
+              </ul>
+            </li>
+            <li><a href="#" (click)="closeMobileNav()">Dropdown 2</a></li>
+            <li><a href="#" (click)="closeMobileNav()">Dropdown 3</a></li>
+            <li><a href="#" (click)="closeMobileNav()">Dropdown 4</a></li>
+          </ul>
+        </li> -->
+        <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileNav()">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none" [ngClass]="mobileNavActive ? 'bi-x' : 'bi-list'" (click)="toggleMobileNav()"></i>
+    </nav>
+
+  </div>
+</header>

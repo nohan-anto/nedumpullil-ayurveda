@@ -1,0 +1,8 @@
+.carousel-control-prev,
+.carousel-control-next {
+  cursor: pointer;
+}
+
+.carousel-indicators li {
+  cursor: pointer;
+}
