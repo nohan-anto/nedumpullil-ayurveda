@@ -36,7 +36,7 @@
   --background-color: #060606;
   --default-color: #ffffff;
   --heading-color: #ffffff;
-  --accent-color: #2ea359;
+  --accent-color: #116530;
   --surface-color: #252525;
   --contrast-color: #ffffff;
 }
@@ -1047,7 +1047,7 @@ section,
 .about .content {
   background: var(--accent-color);
   color: var(--contrast-color);
-  padding: 7rem 0;
+  padding: 7rem 0 3rem 0;
 }
 
 .about .content .img-overlap {
@@ -1357,35 +1357,6 @@ section,
   right: 0;
 }
 
-/* Therapy Indicators */
-.services-2 .therapy-indicators {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.services-2 .therapy-indicators li {
-  width: 12px;
-  height: 12px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.services-2 .therapy-indicators li.active,
-.services-2 .therapy-indicators li:hover {
-  background-color: var(--accent-color);
-  transform: scale(1.2);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .services-2 .therapy-slide-content {
@@ -1407,6 +1378,10 @@ section,
 
   .services-2 .therapy-subtitle {
     font-size: 16px;
+  }
+
+  .services-2 .therapy-description-overlay {
+    padding: 30px 20px;
   }
 
   .services-2 .therapy-description-overlay {
@@ -2493,25 +2468,23 @@ input[type="date"] {
 /* Style the calendar icon */
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  opacity: 0.6;
-  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(75deg);
-  transition: opacity 0.3s;
+  filter: invert(29%) sepia(68%) saturate(1089%) hue-rotate(108deg) brightness(91%) contrast(93%);
+  transition: filter 0.3s;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
+  filter: invert(29%) sepia(68%) saturate(1089%) hue-rotate(108deg) brightness(80%) contrast(93%);
 }
 
 /* Firefox calendar icon */
 input[type="date"]::-moz-calendar-picker-indicator {
   cursor: pointer;
-  opacity: 0.6;
-  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(75deg);
-  transition: opacity 0.3s;
+  filter: invert(29%) sepia(68%) saturate(1089%) hue-rotate(108deg) brightness(91%) contrast(93%);
+  transition: filter 0.3s;
 }
 
 input[type="date"]::-moz-calendar-picker-indicator:hover {
-  opacity: 1;
+  filter: invert(29%) sepia(68%) saturate(1089%) hue-rotate(108deg) brightness(80%) contrast(93%);
 }
 
 /* Webkit browsers (Chrome, Safari, Edge) - Calendar popup styling */
@@ -2558,9 +2531,9 @@ input[type="date"]:not(:focus):invalid::-webkit-datetime-edit {
 }
 
 .dark-background input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(75deg);
+  filter: invert(29%) sepia(68%) saturate(1089%) hue-rotate(108deg) brightness(91%) contrast(93%);
 }
 
 .dark-background input[type="date"]::-moz-calendar-picker-indicator {
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(75deg);
+  filter: invert(29%) sepia(68%) saturate(1089%) hue-rotate(108deg) brightness(91%) contrast(93%);
 }

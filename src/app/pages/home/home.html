@@ -129,20 +129,21 @@
             </a>
           </div>
           <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="100">
-            <h2 class="content-title mb-4">Plants Make Life Better</h2>
+            <h2 class="content-title mb-4">The Ancient Science of Life</h2>
             <p class="mb-4">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              necessitatibus placeat, atque qui voluptatem velit explicabo vitae
-              repellendus architecto provident nisi ullam minus asperiores commodi!
-              Tenetur, repellat aliquam nihil illo.
+              Ayurveda is the oldest surviving medical wisdom around the globe, with a history spanning over 5000 years. This ever-green medical wisdom is one of the best gifts of Indian civilization to humanity. The word Ayurveda means the 'Veda of Ayus' or 'Science of Life.'
+            </p>
+            <p class="mb-4">
+              Ayurveda is defined as a system which uses the inherent principles of nature to help maintain health in an individual by keeping the body, mind, and spirit in perfect equilibrium with nature.
             </p>
             <ul class="list-unstyled list-check">
-              <li>Lorem ipsum dolor sit amet</li>
-              <li>Velit explicabo vitae repellendu</li>
-              <li>Repellat aliquam nihil illo</li>
+              <li>5000+ years of proven medical wisdom</li>
+              <li>Holistic approach to body, mind, and spirit</li>
+              <li>Natural principles for maintaining health</li>
+              <li>Perfect harmony with nature</li>
             </ul>
 
-            <p><a href="#" class="btn-cta">Get in touch</a></p>
+            <p><a href="#contact" class="btn-cta">Book Consultation</a></p>
           </div>
         </div>
       </div>
@@ -153,7 +154,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Therapies Offered</h2>
-        <p>Authentic Ayurvedic treatments for holistic healing and wellness</p>
+        <p>Experience time-honored Ayurvedic therapies tailored to restore balance, relieve pain, and rejuvenate your body and mind</p>
       </div><!-- End Section Title -->
 
       <div class="therapies-carousel-wrap">
@@ -188,12 +189,6 @@
             <a class="carousel-control-next" role="button" (click)="nextTherapy()">
               <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
             </a>
-
-            <ol class="therapy-indicators">
-              @for (therapy of therapies; track therapy.name; let i = $index) {
-                <li (click)="goToTherapy(i)" [class.active]="currentTherapy === i"></li>
-              }
-            </ol>
 
           </div>
         </div>

@@ -141,7 +141,7 @@ export class Home implements AfterViewInit, OnDestroy {
       name: 'Elakizhi',
       subtitle: 'Herbal Leaf Bundle Massage',
       description: 'A revitalizing massage using warm herbal leaf bundles. It reduces inflammation, relieves muscle and joint pain, and improves mobility and circulation.',
-      image: 'assets/img/img_sq_7.jpg'
+      image: 'assets/img/img_sq_4.jpg'
     },
     {
       name: 'Njavarakizhi',
