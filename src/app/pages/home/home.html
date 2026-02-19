@@ -38,8 +38,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>SERVICES</h2>
-        <p>Providing Fresh Produce Every Single Day</p>
+        <h2>SPECIALTIES</h2>
+        <p>Comprehensive Ayurvedic Care for Your Health and Wellness</p>
       </div><!-- End Section Title -->
       <div class="content">
         <div class="container">
@@ -70,39 +70,44 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6 mb-4 mb-lg-0">
-              <img src="assets/img/img_long_5.jpg" alt="Image " class="img-fluid img-overlap" data-aos="zoom-out">
+              <img src="assets/img/img_long_5.jpg" alt="Dr. Basil Johney Nedumpullil" class="img-fluid img-overlap" data-aos="zoom-out">
             </div>
             <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="content-subtitle text-white opacity-50">Why Choose Us</h3>
+              <h3 class="content-subtitle text-white opacity-50">Chief Consultant</h3>
               <h2 class="content-title mb-4">
-                More than <strong>50 year experience</strong> in agriculture
-                industry
+                <strong>Dr. Basil Johney Nedumpullil</strong>
               </h2>
               <p class="opacity-50">
-                Reprehenderit, odio laboriosam? Blanditiis quae ullam quasi illum
-                minima nostrum perspiciatis error consequatur sit nulla.
+                The younger generation Ayurveda Practitioner of the prestigious Nedumpullil Family, continuing the legacy of Late Panatill Scaria Vaidyar. BAMS graduate from Amrita School of Ayurveda with specialized training in Marma Chikitsa under the renowned Late Pandijarekuzhikandathil Joy Vaidyar, a well-known Marma and Ayurveda expert in North Kerala.
               </p>
 
               <div class="row my-5">
                 <div class="col-lg-12 d-flex align-items-start mb-4">
-                  <i class="bi bi-cloud-rain me-4 display-6"></i>
+                  <i class="bi bi-mortarboard me-4 display-6"></i>
                   <div>
-                    <h4 class="m-0 h5 text-white">Plants needs rain</h4>
-                    <p class="text-white opacity-50">Lorem ipsum dolor sit amet.</p>
+                    <h4 class="m-0 h5 text-white">Education & Specialization</h4>
+                    <p class="text-white opacity-50">BAMS from Amrita School of Ayurveda with advanced training in Marma Chikitsa, combining traditional knowledge with modern integrative medicine approaches</p>
                   </div>
                 </div>
                 <div class="col-lg-12 d-flex align-items-start mb-4">
-                  <i class="bi bi-heart me-4 display-6"></i>
+                  <i class="bi bi-award me-4 display-6"></i>
                   <div>
-                    <h4 class="m-0 h5 text-white">Love organic foods</h4>
-                    <p class="text-white opacity-50">Lorem ipsum dolor sit amet.</p>
+                    <h4 class="m-0 h5 text-white">Rich Clinical Experience</h4>
+                    <p class="text-white opacity-50">Extensive practice in Ayurvedic sports medicine, ortho-neuro rehabilitation, pregnancy and postnatal care, stress management, and wellness consulting across Kerala and Karnataka</p>
+                  </div>
+                </div>
+                <div class="col-lg-12 d-flex align-items-start mb-4">
+                  <i class="bi bi-heart-pulse me-4 display-6"></i>
+                  <div>
+                    <h4 class="m-0 h5 text-white">Integrative Approach</h4>
+                    <p class="text-white opacity-50">Incorporates traditional folklore knowledge with Ayurvedic principles, serving as a researcher and practitioner in integrative medicine and holistic healing</p>
                   </div>
                 </div>
                 <div class="col-lg-12 d-flex align-items-start">
-                  <i class="bi bi-shop me-4 display-6"></i>
+                  <i class="bi bi-globe me-4 display-6"></i>
                   <div>
-                    <h4 class="m-0 h5 text-white">Sell vegies</h4>
-                    <p class="text-white opacity-50">Lorem ipsum dolor sit amet.</p>
+                    <h4 class="m-0 h5 text-white">Wellness Advocate</h4>
+                    <p class="text-white opacity-50">Organizes yoga and wellness events, promoting holistic health through community engagement and educational programs</p>
                   </div>
                 </div>
               </div>
@@ -145,69 +150,54 @@
 
     <!-- Services 2 Section -->
     <section id="services-2" class="services-2 section dark-background">
-      @for (carousel of serviceCarousels; track carousel.id; let i = $index) {
-        @if (i === currentServiceCarousel) {
-          <!-- Section Title -->
-          <div class="container section-title" data-aos="fade-up">
-            <h2>{{ carousel.sectionTitle }}</h2>
-            <p>{{ carousel.sectionDescription }}</p>
-          </div><!-- End Section Title -->
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Therapies Offered</h2>
+        <p>Authentic Ayurvedic treatments for holistic healing and wellness</p>
+      </div><!-- End Section Title -->
 
-          <div class="services-carousel-wrap">
-            <div class="container">
-              <div class="swiper init-swiper">
-                <script type="application/json" class="swiper-config">
-                  {
-                    "loop": true,
-                    "speed": 600,
-                    "autoplay": {
-                      "delay": 5000
-                    },
-                    "slidesPerView": "auto",
-                    "pagination": {
-                      "el": ".swiper-pagination",
-                      "type": "bullets",
-                      "clickable": true
-                    },
-                    "breakpoints": {
-                      "320": {
-                        "slidesPerView": 1,
-                        "spaceBetween": 40
-                      },
-                      "1200": {
-                        "slidesPerView": 3,
-                        "spaceBetween": 40
-                      }
-                    }
-                  }
-                </script>
-                <button class="navigation-prev js-custom-prev" (click)="prevServiceCarousel()">
-                  <i class="bi bi-arrow-left-short"></i>
-                </button>
-                <button class="navigation-next js-custom-next" (click)="nextServiceCarousel()">
-                  <i class="bi bi-arrow-right-short"></i>
-                </button>
-                <div class="swiper-wrapper">
-                  @for (slide of carousel.slides; track slide.title) {
-                    <div class="swiper-slide">
-                      <div class="service-item">
-                        <div class="service-item-contents">
-                          <a href="#">
-                            <span class="service-item-category">{{ slide.category }}</span>
-                            <h2 class="service-item-title">{{ slide.title }}</h2>
-                          </a>
-                        </div>
-                        <img [src]="slide.image" [alt]="slide.title" class="img-fluid">
-                      </div>
+      <div class="therapies-carousel-wrap">
+        <div class="container">
+          <div id="therapy-carousel" class="therapy-carousel">
+
+            @for (therapy of therapies; track therapy.name; let i = $index) {
+              <div class="therapy-slide" [class.active]="i === currentTherapy"
+                   (mouseenter)="pauseTherapyAutoplay()"
+                   (mouseleave)="resumeTherapyAutoplay()">
+                <div class="therapy-slide-content">
+                  <div class="therapy-image">
+                    <img [src]="therapy.image" [alt]="therapy.name" class="img-fluid">
+                  </div>
+                  <div class="therapy-info">
+                    <div class="therapy-name-container">
+                      <h3 class="therapy-name">{{ therapy.name }}</h3>
+                      <p class="therapy-subtitle">{{ therapy.subtitle }}</p>
                     </div>
-                  }
+                    <div class="therapy-description-overlay">
+                      <p>{{ therapy.description }}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="swiper-pagination"></div>
               </div>
-            </div>
+            }
+
+            <a class="carousel-control-prev" role="button" (click)="prevTherapy()">
+              <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" role="button" (click)="nextTherapy()">
+              <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+
+            <ol class="therapy-indicators">
+              @for (therapy of therapies; track therapy.name; let i = $index) {
+                <li (click)="goToTherapy(i)" [class.active]="currentTherapy === i"></li>
+              }
+            </ol>
+
           </div>
-        }
-      }
+        </div>
+      </div>
     </section><!-- /Services 2 Section -->
 
     <!-- Testimonials Section -->
@@ -215,16 +205,15 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>TESTIMONIALS</h2>
-        <p>Necessitatibus eius consequatur</p>
+        <p>What our guests say about their experience</p>
       </div><!-- End Section Title -->
 
       <div class="testimonial-wrap">
         <div class="container">
-          <div class="row">
+          <div class="row justify-content-center">
             @for (testimonial of testimonials; track testimonial.name) {
-              <div class="col-md-6 mb-4 mb-md-4">
+              <div class="col-md-4 mb-4 mb-md-4">
                 <div class="testimonial">
-                  <img [src]="testimonial.image" [alt]="testimonial.name">
                   <blockquote>
                     <p>"{{ testimonial.quote }}"</p>
                   </blockquote>
@@ -295,25 +284,14 @@
       <div class="content">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-lg-6">
-              <h3>Subscribe To Our Newsletter</h3>
+            <div class="col-lg-4">
+              <h3>Book an Appointment</h3>
               <p class="opacity-50">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nesciunt, reprehenderit!
+                Schedule your consultation with our Ayurvedic experts. Choose your preferred date and we'll get back to you shortly.
               </p>
             </div>
-            <div class="col-lg-6">
-              <form action="forms/newsletter.php" class="form-subscribe php-email-form">
-                <div class="form-group d-flex align-items-stretch">
-                  <input type="email" name="email" class="form-control h-100" placeholder="Enter your e-mail">
-                  <input type="submit" class="btn btn-secondary px-4" value="Subcribe">
-                </div>
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Your subscription request has been sent. Thank you!
-                </div>
-              </form>
+            <div class="col-lg-8">
+              <app-appointment-form></app-appointment-form>
             </div>
           </div>
         </div>

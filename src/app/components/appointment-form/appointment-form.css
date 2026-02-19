@@ -1,0 +1,145 @@
+.appointment-form-container {
+  width: 100%;
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: stretch;
+}
+
+.form-group {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--default-color);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-group.phone-group {
+  display: flex;
+  flex-direction: row !important;
+  gap: 10px;
+  width: 100%;
+}
+
+.country-code-wrapper {
+  flex: 0 0 180px;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.country-code-wrapper label,
+.phone-input-wrapper label {
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
+
+.country-code {
+  width: 100%;
+}
+
+.phone-input {
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid var(--default-color);
+  background: #fff;
+  color: var(--default-color);
+  border-radius: 4px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-color, #4CAF50);
+  background: #fff;
+}
+
+.form-control::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.form-control option {
+  background: #fff;
+  color: var(--default-color);
+}
+
+.btn-primary {
+  padding: 12px 40px;
+  background: var(--accent-color, #4CAF50);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--accent-color, #4CAF50) 85%, white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+  .appointment-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 15px;
+  }
+
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .phone-group {
+    flex: 1.5;
+    min-width: 300px;
+  }
+
+  .btn-primary {
+    width: auto;
+    flex: 0 0 auto;
+    margin-top: 29px;
+  }
+}

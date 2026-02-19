@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { GlightboxService } from '../../services/glightbox';
 import { SwiperService } from '../../services/swiper';
+import { AppointmentForm } from '../../components/appointment-form/appointment-form';
 
 interface BlogPost {
   image: string;
@@ -36,6 +37,7 @@ interface ServiceSlide {
   category: string;
   title: string;
   image: string;
+  description?: string;
 }
 
 interface ServiceCarousel {
@@ -45,16 +47,24 @@ interface ServiceCarousel {
   slides: ServiceSlide[];
 }
 
+interface Therapy {
+  name: string;
+  subtitle: string;
+  description: string;
+  image: string;
+}
+
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, AppointmentForm],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home implements AfterViewInit, OnDestroy {
   private carouselInterval: any;
+  private therapyInterval: any;
   currentSlide = 0;
-  currentServiceCarousel = 0;
+  currentTherapy = 0;
 
   heroSlides: HeroSlide[] = [
     {
@@ -88,144 +98,191 @@ export class Home implements AfterViewInit, OnDestroy {
     return this.heroSlides.length;
   }
 
-  serviceCarousels: ServiceCarousel[] = [
+  serviceCarousels: ServiceCarousel[] = [];
+
+  therapies: Therapy[] = [
     {
-      id: 'ayurvedic-treatments',
-      sectionTitle: 'Ayurvedic Treatments',
-      sectionDescription: 'Discover our authentic traditional therapies',
-      slides: [
-        {
-          category: 'Therapy',
-          title: 'Panchakarma Detox',
-          image: 'assets/img/img_sq_1.jpg'
-        },
-        {
-          category: 'Massage',
-          title: 'Abhyanga Oil Therapy',
-          image: 'assets/img/img_sq_3.jpg'
-        },
-        {
-          category: 'Treatment',
-          title: 'Shirodhara Therapy',
-          image: 'assets/img/img_sq_8.jpg'
-        },
-        {
-          category: 'Wellness',
-          title: 'Herbal Steam Bath',
-          image: 'assets/img/img_sq_4.jpg'
-        },
-        {
-          category: 'Therapy',
-          title: 'Nasyam Treatment',
-          image: 'assets/img/img_sq_5.jpg'
-        },
-        {
-          category: 'Massage',
-          title: 'Pizhichil Therapy',
-          image: 'assets/img/img_sq_6.jpg'
-        },
-        {
-          category: 'Treatment',
-          title: 'Kizhi Massage',
-          image: 'assets/img/img_sq_8.jpg'
-        }
-      ]
+      name: 'Abhyangam',
+      subtitle: 'Therapeutic Full-Body Oil Massage',
+      description: 'A therapeutic full-body oil massage that helps restore balance among the body\'s energies. It improves circulation, eases muscle stiffness, supports joint health, and promotes deep physical and mental relaxation.',
+      image: 'assets/img/img_sq_1.jpg'
     },
     {
-      id: 'wellness-programs',
-      sectionTitle: 'Wellness Programs',
-      sectionDescription: 'Comprehensive health packages for your well-being',
-      slides: [
-        {
-          category: 'Program',
-          title: 'Stress Relief Package',
-          image: 'assets/img/img_sq_1.jpg'
-        },
-        {
-          category: 'Program',
-          title: 'Weight Management',
-          image: 'assets/img/img_sq_3.jpg'
-        },
-        {
-          category: 'Program',
-          title: 'Immunity Boost',
-          image: 'assets/img/img_sq_4.jpg'
-        }
-      ]
+      name: 'Pizhichil',
+      subtitle: 'Rejuvenating Oil Stream Therapy',
+      description: 'A deeply rejuvenating therapy where warm medicated oil is continuously poured over the body. It nourishes the nervous system, strengthens muscles, and is especially beneficial for chronic joint and neurological conditions.',
+      image: 'assets/img/img_sq_1.jpg'
+    },
+    {
+      name: 'Shirodhara',
+      subtitle: 'Calming Forehead Oil Stream',
+      description: 'A calming treatment in which medicated oil is gently streamed over the forehead. It helps relieve stress, anxiety, insomnia, and mental fatigue while supporting emotional balance and clarity.',
+      image: 'assets/img/img_sq_3.jpg'
+    },
+    {
+      name: 'Kati Vasthi',
+      subtitle: 'Lower Back Oil Retention',
+      description: 'A localized therapy that retains warm medicated oil over the lower back. It is effective for chronic back pain, spinal discomfort, and conditions related to nerve compression.',
+      image: 'assets/img/img_sq_4.jpg'
+    },
+    {
+      name: 'Thalapothichi',
+      subtitle: 'Cooling Scalp Herbal Paste',
+      description: 'A cooling herbal paste is applied to the scalp to calm the nervous system. This treatment is helpful for headaches, migraines, stress-related disorders, and scalp or hair concerns.',
+      image: 'assets/img/img_sq_5.jpg'
+    },
+    {
+      name: 'Netra Tarpanam',
+      subtitle: 'Nourishing Eye Therapy',
+      description: 'A nourishing eye therapy using medicated ghee or herbal preparations. It relieves eye strain, dryness, and supports overall eye health and vision.',
+      image: 'assets/img/img_sq_6.jpg'
+    },
+    {
+      name: 'Elakizhi',
+      subtitle: 'Herbal Leaf Bundle Massage',
+      description: 'A revitalizing massage using warm herbal leaf bundles. It reduces inflammation, relieves muscle and joint pain, and improves mobility and circulation.',
+      image: 'assets/img/img_sq_7.jpg'
+    },
+    {
+      name: 'Njavarakizhi',
+      subtitle: 'Medicated Rice Bolus Therapy',
+      description: 'A strengthening therapy using medicated rice boluses cooked in herbal decoctions and milk. It supports muscle nourishment, improves strength, and promotes overall rejuvenation.',
+      image: 'assets/img/img_sq_8.jpg'
+    },
+    {
+      name: 'Thakradhara',
+      subtitle: 'Cooling Buttermilk Stream',
+      description: 'A cooling variation of Shirodhara using medicated buttermilk. It is especially beneficial for stress, skin disorders, scalp conditions, and excess body heat.',
+      image: 'assets/img/img_sq_1.jpg'
+    },
+    {
+      name: 'Shiro Vasthi',
+      subtitle: 'Head Oil Retention Therapy',
+      description: 'A specialized treatment where medicated oil is retained on the head. It helps nourish the brain and nervous system and is beneficial for neurological imbalances and chronic headaches.',
+      image: 'assets/img/img_sq_3.jpg'
+    },
+    {
+      name: 'Nasyam',
+      subtitle: 'Nasal Detoxification',
+      description: 'A detoxifying therapy involving medicated nasal drops. It cleanses the sinus passages, improves respiratory health, and strengthens the sense organs above the neck.',
+      image: 'assets/img/img_sq_3.jpg'
+    },
+    {
+      name: 'Udvarthanam',
+      subtitle: 'Herbal Powder Massage',
+      description: 'A stimulating dry herbal powder massage that helps reduce excess fat, improves metabolism, enhances circulation, and leaves the skin firm and refreshed.',
+      image: 'assets/img/img_sq_4.jpg'
+    },
+    {
+      name: 'Rasayana Chikitsa',
+      subtitle: 'Rejuvenation Therapy',
+      description: 'A rejuvenation-focused therapy designed to enhance immunity, vitality, and longevity while supporting the body\'s natural healing and anti-aging processes.',
+      image: 'assets/img/img_sq_5.jpg'
+    },
+    {
+      name: 'Virechanam',
+      subtitle: 'Digestive Purification',
+      description: 'A purification therapy that gently cleanses the digestive system, helping eliminate toxins and restore metabolic balance.',
+      image: 'assets/img/img_sq_6.jpg'
+    },
+    {
+      name: 'Vamanam',
+      subtitle: 'Respiratory Detoxification',
+      description: 'A detoxification procedure focused on eliminating excess Kapha from the body, supporting respiratory health and metabolic clarity.',
+      image: 'assets/img/img_sq_8.jpg'
     }
   ];
 
   services: Service[] = [
     {
       number: '01',
-      icon: 'bi-heart-pulse',
-      title: 'Panchakarma Therapy',
-      description: 'Traditional detoxification and rejuvenation treatment that cleanses the body of toxins and restores balance'
+      icon: 'bi-droplet-fill',
+      title: 'Dermatology & Trichology',
+      description: 'Specialized Ayurvedic treatments for skin disorders, hair loss, scalp conditions, and comprehensive dermatological care using natural herbal remedies'
     },
     {
       number: '02',
-      icon: 'bi-droplet',
-      title: 'Abhyanga Massage',
-      description: 'Therapeutic full-body oil massage using warm herbal oils to promote relaxation and improve circulation'
+      icon: 'bi-shield-fill-exclamation',
+      title: 'Frozen Shoulder',
+      description: 'Therapeutic interventions combining massage, herbal applications, and movement therapy to restore mobility and reduce pain in shoulder joint conditions'
     },
     {
       number: '03',
-      icon: 'bi-capsule',
-      title: 'Herbal Medicines',
-      description: 'Authentic Ayurvedic formulations prepared from natural herbs to treat various health conditions'
+      icon: 'bi-heart-pulse',
+      title: 'Arthritis Management',
+      description: 'Comprehensive treatment protocols for various forms of arthritis using traditional Panchakarma therapies, herbal medications, and lifestyle modifications'
     },
     {
       number: '04',
-      icon: 'bi-person-check',
-      title: 'Consultation & Diagnosis',
-      description: 'Personalized health assessment and treatment plan based on your unique body constitution (Prakriti)'
+      icon: 'bi-person-hearts',
+      title: 'Women Wellness',
+      description: 'Holistic care addressing hormonal balance, menstrual disorders, PCOS, menopause management, and overall reproductive health for women at all life stages'
     },
     {
       number: '05',
-      icon: 'bi-flower1',
-      title: 'Shirodhara Treatment',
-      description: 'Calming therapy where warm oil is gently poured on the forehead to relieve stress and anxiety'
+      icon: 'bi-arrows-expand',
+      title: 'Neck Stiffness',
+      description: 'Targeted treatments for cervical spondylosis, muscle tension, and neck pain through specialized massages, Nasyam therapy, and therapeutic exercises'
     },
     {
       number: '06',
-      icon: 'bi-cup-hot',
-      title: 'Dietary Counseling',
-      description: 'Customized nutrition guidance according to Ayurvedic principles for optimal health and wellness'
+      icon: 'bi-lungs',
+      title: 'Asthma & Respiratory Care',
+      description: 'Ayurvedic management of asthma, chronic bronchitis, and respiratory ailments through herbal medicines, breathing exercises, and dietary modifications'
     },
     {
       number: '07',
-      icon: 'bi-yin-yang',
-      title: 'Yoga & Meditation',
-      description: 'Guided sessions to enhance physical flexibility, mental clarity, and spiritual well-being'
+      icon: 'bi-stars',
+      title: 'Pediatric Care (Balraksha)',
+      description: 'Specialized care for children focusing on holistic growth and development, immunity building, natural healing, improved digestion, and optimal nutrition'
     },
     {
       number: '08',
       icon: 'bi-bandaid',
-      title: 'Pain Management',
-      description: 'Natural Ayurvedic treatments for chronic pain relief including arthritis, back pain, and joint disorders'
+      title: 'Knee Pain Management',
+      description: 'Effective Ayurvedic treatments for osteoarthritis, ligament injuries, and chronic knee pain using Janu Basti, herbal oils, and strengthening protocols'
+    },
+    {
+      number: '09',
+      icon: 'bi-flower3',
+      title: 'Stress & Strain Clinic',
+      description: 'Comprehensive rehabilitation services for stress management, mental fatigue, and physical strain through relaxation therapies, meditation, and rejuvenation treatments'
+    },
+    {
+      number: '10',
+      icon: 'bi-shield-plus',
+      title: 'Sports Injury Management',
+      description: 'Specialized prevention and treatment protocols for sports-related injuries focusing on rapid recovery, pain relief, and performance enhancement'
+    },
+    {
+      number: '11',
+      icon: 'bi-gender-female',
+      title: 'Gynecology & Postnatal Care',
+      description: 'Traditional Ayurvedic gynecological treatments, prenatal support, postnatal recovery programs, and comprehensive maternal wellness care'
+    },
+    {
+      number: '12',
+      icon: 'bi-prescription2',
+      title: 'Skin Disease Treatment',
+      description: 'Evidence-based Ayurvedic approach to treating eczema, psoriasis, acne, pigmentation disorders, and other chronic skin conditions with natural remedies'
     }
   ];
 
   testimonials: Testimonial[] = [
     {
-      image: 'assets/img/testimonials/testimonials-1.jpg',
-      quote: 'The Panchakarma treatment at Nedumpullil Ayurveda was life-changing. After years of chronic pain, I finally found relief through their authentic traditional approach.',
-      name: 'Rajesh Kumar'
+      image: '',
+      quote: 'We came to Nedumpullil Ayurveda primarily for the natural beauty and peaceful environment. The resort is nestled in such serene surroundings that even without taking any treatments, our stay was incredibly rejuvenating. The staff was wonderful, the rooms were comfortable, and waking up to the sounds of nature was therapeutic in itself. A perfect retreat for anyone seeking tranquility.',
+      name: 'Arjun & Meera Krishnan, Bangalore'
     },
     {
-      image: 'assets/img/testimonials/testimonials-2.jpg',
-      quote: 'I was skeptical at first, but the personalized Ayurvedic treatment plan helped me overcome my digestive issues completely. The doctors are highly knowledgeable and caring.',
-      name: 'Priya Menon'
+      image: '',
+      quote: 'I underwent a 14-day Panchakarma treatment for my chronic arthritis, and the results have been remarkable. Dr. Basil\'s expertise in Marma therapy combined with traditional Ayurvedic treatments provided relief I had been seeking for years. The resort setting made the healing process even more effective - surrounded by nature, away from city stress. The food, prepared according to Ayurvedic principles, was both healing and delicious.',
+      name: 'Lakshmi Menon, Kochi'
     },
     {
-      image: 'assets/img/testimonials/testimonials-3.jpg',
-      quote: 'The herbal medicines and therapeutic massages have significantly improved my overall well-being. I highly recommend Nedumpullil Ayurveda for anyone seeking holistic healing.',
-      name: 'Anita Nair'
-    },
-    {
-      image: 'assets/img/testimonials/testimonials-4.jpg',
-      quote: 'As someone dealing with stress and anxiety, the Ayurvedic treatments and yoga sessions here have been incredibly beneficial. I feel rejuvenated and balanced.',
-      name: 'Suresh Chandran'
+      image: '',
+      quote: 'Our family stayed at the resort for a week-long vacation. While my parents opted for wellness treatments, my wife and I simply enjoyed the beautiful natural surroundings, took nature walks, and experienced the peaceful atmosphere. The flexibility to stay without mandatory treatments was perfect for us. The organic meals and yoga sessions were available to everyone. It is truly a place where healing and relaxation coexist beautifully.',
+      name: 'Vikram Sharma & Family, Mumbai'
     }
   ];
 
@@ -262,10 +319,15 @@ export class Home implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit() {
-    // Auto-advance carousel every 5 seconds
+    // Auto-advance hero carousel every 5 seconds
     this.carouselInterval = setInterval(() => {
       this.nextSlide();
     }, 5000);
+
+    // Auto-advance therapy carousel every 4 seconds
+    this.therapyInterval = setInterval(() => {
+      this.nextTherapy();
+    }, 4000);
 
     // Initialize Swiper
     this.swiperService.initAll();
@@ -277,6 +339,9 @@ export class Home implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     if (this.carouselInterval) {
       clearInterval(this.carouselInterval);
+    }
+    if (this.therapyInterval) {
+      clearInterval(this.therapyInterval);
     }
   }
 
@@ -307,19 +372,31 @@ export class Home implements AfterViewInit, OnDestroy {
     items[this.currentSlide].classList.add('active');
   }
 
-  nextServiceCarousel() {
-    this.currentServiceCarousel = (this.currentServiceCarousel + 1) % this.serviceCarousels.length;
-    // Re-initialize Swiper for the new carousel
-    setTimeout(() => {
-      this.swiperService.initAll();
-    }, 100);
+  get totalTherapies(): number {
+    return this.therapies.length;
   }
 
-  prevServiceCarousel() {
-    this.currentServiceCarousel = (this.currentServiceCarousel - 1 + this.serviceCarousels.length) % this.serviceCarousels.length;
-    // Re-initialize Swiper for the new carousel
-    setTimeout(() => {
-      this.swiperService.initAll();
-    }, 100);
+  nextTherapy() {
+    this.currentTherapy = (this.currentTherapy + 1) % this.totalTherapies;
+  }
+
+  prevTherapy() {
+    this.currentTherapy = (this.currentTherapy - 1 + this.totalTherapies) % this.totalTherapies;
+  }
+
+  goToTherapy(index: number) {
+    this.currentTherapy = index;
+  }
+
+  pauseTherapyAutoplay() {
+    if (this.therapyInterval) {
+      clearInterval(this.therapyInterval);
+    }
+  }
+
+  resumeTherapyAutoplay() {
+    this.therapyInterval = setInterval(() => {
+      this.nextTherapy();
+    }, 4000);
   }
 }
