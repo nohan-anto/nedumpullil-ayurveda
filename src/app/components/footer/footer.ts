@@ -1,5 +1,6 @@
 import { Component, HostListener, afterNextRender } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { EMAIL_ADDRESS, PHONE_NUMBER } from '../../constants/common.constants';
 
 @Component({
   selector: 'app-footer',
@@ -8,6 +9,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './footer.css',
 })
 export class Footer {
+  phoneNumber = PHONE_NUMBER;
+  emailAddress = EMAIL_ADDRESS;
   constructor() {
     afterNextRender(() => {
       this.toggleScrollTop();
