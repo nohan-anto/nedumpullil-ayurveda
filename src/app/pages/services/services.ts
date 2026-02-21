@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import {
   WELLNESS_PACKAGES,
   TREATMENT_AREAS,
@@ -19,7 +19,7 @@ import { ConsultationModal } from '../../components/consultation-modal/consultat
   templateUrl: './services.html',
   styleUrl: './services.css',
 })
-export class Services {
+export class Services implements OnInit {
   activeTab: 'packages' | 'therapies' | 'specialized' = 'packages';
   activePackageTab: 'wellness' | 'treatment' = 'wellness';
   expandedPackage: number | null = 1; // First package open by default
@@ -29,11 +29,57 @@ export class Services {
   preSelectedTreatment: number | null = null;
   preSelectedTherapy: number | null = null;
   preSelectedSpecialized: number | null = null;
+  highlightedItem: { category: string, id: number } | null = null;
 
   wellnessPackages: WellnessPackage[] = WELLNESS_PACKAGES;
   treatmentAreas: TreatmentArea[] = TREATMENT_AREAS;
   therapies: Therapy[] = THERAPIES;
   specializedTreatments: SpecializedTreatment[] = SPECIALIZED_TREATMENTS;
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const category = params['category'];
+      const id = params['id'];
+      const highlight = params['highlight'];
+
+      if (category && id) {
+        // Switch to the appropriate tab
+        if (category === 'specialized') {
+          this.activeTab = 'specialized';
+          this.expandedSpecialty = parseInt(id);
+        } else if (category === 'wellness') {
+          this.activeTab = 'packages';
+          this.activePackageTab = 'wellness';
+          this.expandedPackage = parseInt(id);
+        } else if (category === 'treatment') {
+          this.activeTab = 'packages';
+          this.activePackageTab = 'treatment';
+        } else if (category === 'therapies') {
+          this.activeTab = 'therapies';
+        }
+
+        // Set highlight
+        if (highlight === 'true') {
+          this.highlightedItem = { category, id: parseInt(id) };
+
+          // Scroll to item after a short delay to allow rendering
+          setTimeout(() => {
+            const element = document.getElementById(`${category}-${id}`);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 500);
+
+          // Remove highlight after animation
+          setTimeout(() => {
+            this.highlightedItem = null;
+          }, 3000);
+        }
+      }
+    });
+  }
 
   switchTab(tab: 'packages' | 'therapies' | 'specialized') {
     this.activeTab = tab;

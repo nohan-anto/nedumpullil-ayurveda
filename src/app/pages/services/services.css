@@ -785,3 +785,43 @@
     margin-left: auto;
   }
 }
+
+/* Highlighted Card Animation */
+.specialty-card.highlighted,
+.package-card.highlighted,
+.therapy-card.highlighted {
+  animation: pulseHighlight 2s ease-in-out;
+  border: 2px solid var(--accent-color) !important;
+}
+
+@keyframes pulseHighlight {
+  0%, 100% {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(17, 101, 48, 0.3);
+  }
+}
+
+/* Glowing Book Now Button */
+.book-now-link.glow {
+  animation: glowPulse 1.5s ease-in-out infinite;
+  background: linear-gradient(90deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color) 85%, white 15%) 50%, var(--accent-color) 100%);
+  background-size: 200% 100%;
+  color: #fff !important;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(17, 101, 48, 0.4);
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(17, 101, 48, 0.4);
+    background-position: 0% 50%;
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(17, 101, 48, 0.6);
+    background-position: 100% 50%;
+  }
+}

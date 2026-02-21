@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { GlightboxService } from '../../services/glightbox';
 import { SwiperService } from '../../services/swiper';
 import { AppointmentForm } from '../../components/appointment-form/appointment-form';
@@ -216,57 +216,33 @@ export class Home implements AfterViewInit, OnDestroy {
     },
     {
       number: '04',
-      icon: 'bi-person-hearts',
-      title: 'Women Wellness',
-      description: 'Holistic care addressing hormonal balance, menstrual disorders, PCOS, menopause management, and overall reproductive health for women at all life stages'
+      icon: 'bi-gender-female',
+      title: 'Gynecology & Postnatal Care',
+      description: 'Comprehensive women wellness care addressing hormonal balance, menstrual disorders, PCOS, prenatal support, postnatal recovery, and maternal health at all life stages'
     },
     {
       number: '05',
-      icon: 'bi-arrows-expand',
-      title: 'Neck Stiffness',
-      description: 'Targeted treatments for cervical spondylosis, muscle tension, and neck pain through specialized massages, Nasyam therapy, and therapeutic exercises'
-    },
-    {
-      number: '06',
-      icon: 'bi-lungs',
-      title: 'Asthma & Respiratory Care',
-      description: 'Ayurvedic management of asthma, chronic bronchitis, and respiratory ailments through herbal medicines, breathing exercises, and dietary modifications'
-    },
-    {
-      number: '07',
       icon: 'bi-stars',
       title: 'Pediatric Care (Balraksha)',
       description: 'Specialized care for children focusing on holistic growth and development, immunity building, natural healing, improved digestion, and optimal nutrition'
     },
     {
-      number: '08',
+      number: '06',
       icon: 'bi-bandaid',
       title: 'Knee Pain Management',
       description: 'Effective Ayurvedic treatments for osteoarthritis, ligament injuries, and chronic knee pain using Janu Basti, herbal oils, and strengthening protocols'
     },
     {
-      number: '09',
+      number: '07',
       icon: 'bi-flower3',
       title: 'Stress & Strain Clinic',
       description: 'Comprehensive rehabilitation services for stress management, mental fatigue, and physical strain through relaxation therapies, meditation, and rejuvenation treatments'
     },
     {
-      number: '10',
+      number: '08',
       icon: 'bi-shield-plus',
       title: 'Sports Injury Management',
       description: 'Specialized prevention and treatment protocols for sports-related injuries focusing on rapid recovery, pain relief, and performance enhancement'
-    },
-    {
-      number: '11',
-      icon: 'bi-gender-female',
-      title: 'Gynecology & Postnatal Care',
-      description: 'Traditional Ayurvedic gynecological treatments, prenatal support, postnatal recovery programs, and comprehensive maternal wellness care'
-    },
-    {
-      number: '12',
-      icon: 'bi-prescription2',
-      title: 'Skin Disease Treatment',
-      description: 'Evidence-based Ayurvedic approach to treating eczema, psoriasis, acne, pigmentation disorders, and other chronic skin conditions with natural remedies'
     }
   ];
 
@@ -317,7 +293,8 @@ export class Home implements AfterViewInit, OnDestroy {
 
   constructor(
     private glightboxService: GlightboxService,
-    private swiperService: SwiperService
+    private swiperService: SwiperService,
+    private router: Router
   ) {}
 
   ngAfterViewInit() {
@@ -408,5 +385,62 @@ export class Home implements AfterViewInit, OnDestroy {
 
   closeConsultationModal() {
     this.showConsultationModal = false;
+  }
+
+  navigateToService(serviceTitle: string) {
+    // Map home page services to services page items
+    const serviceMap: { [key: string]: { category: string, id: number } } = {
+      'Dermatology & Trichology': { category: 'specialized', id: 5 },
+      'Frozen Shoulder': { category: 'specialized', id: 2 },
+      'Arthritis Management': { category: 'specialized', id: 2 },
+      'Gynecology & Postnatal Care': { category: 'specialized', id: 4 },
+      'Pediatric Care (Balraksha)': { category: 'specialized', id: 8 },
+      'Knee Pain Management': { category: 'specialized', id: 2 },
+      'Stress & Strain Clinic': { category: 'specialized', id: 1 },
+      'Sports Injury Management': { category: 'specialized', id: 3 }
+    };
+
+    const mapping = serviceMap[serviceTitle];
+    if (mapping) {
+      this.router.navigate(['/services'], {
+        queryParams: {
+          category: mapping.category,
+          id: mapping.id,
+          highlight: 'true'
+        }
+      });
+    }
+  }
+
+  navigateToTherapy(therapyName: string) {
+    // Map therapy names to their IDs
+    const therapyMap: { [key: string]: number } = {
+      'Abhyangam': 1,
+      'Pizhichil': 2,
+      'Shirodhara': 3,
+      'Kati Vasthi': 4,
+      'Thalapothichi': 5,
+      'Netra Tarpanam': 6,
+      'Elakizhi': 7,
+      'Njavarakizhi': 8,
+      'Thakradhara': 9,
+      'Shiro Vasthi': 10,
+      'Nasyam': 11,
+      'Udvarthanam': 12,
+      'Rasayana Chikitsa': 13,
+      'Virechanam': 14,
+      'Vamanam': 15
+    };
+
+    const therapyId = therapyMap[therapyName];
+    if (therapyId) {
+      this.router.navigate(['/services'], {
+        queryParams: {
+          category: 'therapies',
+          id: therapyId,
+          highlight: 'true'
+        }
+      });
+    }
   }
 }

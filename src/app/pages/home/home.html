@@ -46,7 +46,7 @@
           <div class="row g-0">
             @for (service of services; track service.number) {
               <div class="col-lg-3 col-md-6">
-                <div class="service-item">
+                <div class="service-item" (click)="navigateToService(service.title)" style="cursor: pointer;">
                   <span class="number">{{ service.number }}</span>
                   <div class="service-item-icon">
                     <i class="bi {{ service.icon }}" style="font-size: 48px;"></i>
@@ -136,14 +136,18 @@
             <p class="mb-4">
               Ayurveda is defined as a system which uses the inherent principles of nature to help maintain health in an individual by keeping the body, mind, and spirit in perfect equilibrium with nature.
             </p>
-            <ul class="list-unstyled list-check">
-              <li>5000+ years of proven medical wisdom</li>
-              <li>Holistic approach to body, mind, and spirit</li>
-              <li>Natural principles for maintaining health</li>
-              <li>Perfect harmony with nature</li>
-            </ul>
 
-            <p><a (click)="openConsultationModal()" class="btn-cta" style="cursor: pointer;">Book Consultation</a></p>
+            <div class="institute-highlight mt-4 mb-5">
+              <div class="institute-badge">
+                <i class="bi bi-mortarboard-fill"></i>
+              </div>
+              <h4 class="institute-title">Nedumpullil Institute of Ayurveda, Integrative Medicine Research</h4>
+              <p class="institute-text">
+                We believe that no single medical system has all the answers. Our department develops integrative programs that unite Ayurveda, Yoga, and other traditional healing systems with modern medical diagnostics to offer comprehensive and effective patient care.
+              </p>
+            </div>
+
+            <p class="mt-4"><a (click)="openConsultationModal()" class="btn-cta" style="cursor: pointer;">Book Consultation</a></p>
           </div>
         </div>
       </div>
@@ -164,7 +168,9 @@
             @for (therapy of therapies; track therapy.name; let i = $index) {
               <div class="therapy-slide" [class.active]="i === currentTherapy"
                    (mouseenter)="pauseTherapyAutoplay()"
-                   (mouseleave)="resumeTherapyAutoplay()">
+                   (mouseleave)="resumeTherapyAutoplay()"
+                   (click)="navigateToTherapy(therapy.name)"
+                   style="cursor: pointer;">
                 <div class="therapy-slide-content">
                   <div class="therapy-image">
                     <img [src]="therapy.image" [alt]="therapy.name" class="img-fluid">
