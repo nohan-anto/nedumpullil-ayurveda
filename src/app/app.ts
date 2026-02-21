@@ -4,10 +4,11 @@ import AOS from 'aos';
 import { filter } from 'rxjs/operators';
 import { Footer } from './components/footer/footer';
 import { Header } from './components/header/header';
+import { ToastComponent } from './components/toast/toast.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer],
+  imports: [RouterOutlet, Header, Footer, ToastComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

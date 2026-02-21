@@ -7,6 +7,7 @@ import {
   THERAPIES,
   SPECIALIZED_TREATMENTS
 } from '../../constants/services.constants';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-consultation-modal',
@@ -34,6 +35,8 @@ export class ConsultationModal implements OnInit {
   treatmentAreas = TREATMENT_AREAS;
   therapies = THERAPIES;
   specializedTreatments = SPECIALIZED_TREATMENTS;
+
+  constructor(private toastService: ToastService) {}
 
   get hasPreSelection(): boolean {
     return this.preSelectedWellness !== null ||
@@ -110,6 +113,9 @@ export class ConsultationModal implements OnInit {
       `\nPlease contact me to schedule a consultation.\n\n` +
       `Thank you,\n${this.name}`
     );
+
+    // Show toast notification
+    this.toastService.info('Opening your mail app...', 2500);
 
     window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
 
