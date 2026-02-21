@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'about', component: About },
   { path: 'services', component: Services },
   { path: 'testimonials', component: Testimonials },
-  { path: 'blog', component: Blog },
+  { path: 'news-events', component: Blog },
   { path: 'blog-details', component: BlogDetails },
   { path: 'contact', component: Contact },
   { path: '**', redirectTo: '' }

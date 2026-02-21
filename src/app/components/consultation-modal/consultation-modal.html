@@ -44,68 +44,140 @@
               required>
           </div>
 
-          <div class="mb-3">
-            <label for="consultWellnessPackage" class="form-label">Wellness Package</label>
-            <select
-              class="form-select"
-              id="consultWellnessPackage"
-              [(ngModel)]="wellnessPackage"
-              name="wellnessPackage"
-              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
-              <option [ngValue]="null">Select Wellness Package (Optional)</option>
-              @for (pkg of wellnessPackages; track pkg.id) {
-                <option [ngValue]="pkg.id">{{ pkg.name }}</option>
-              }
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="consultTreatmentArea" class="form-label">Treatment Area</label>
-            <select
-              class="form-select"
-              id="consultTreatmentArea"
-              [(ngModel)]="treatmentArea"
-              name="treatmentArea"
-              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
-              <option [ngValue]="null">Select Treatment Area (Optional)</option>
-              @for (area of treatmentAreas; track area.id) {
-                <option [ngValue]="area.id">{{ area.name }}</option>
-              }
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="consultTherapy" class="form-label">Preferred Therapy</label>
-            <select
-              class="form-select"
-              id="consultTherapy"
-              [(ngModel)]="therapy"
-              name="therapy"
-              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
-              <option [ngValue]="null">Select Therapy (Optional)</option>
-              @for (t of therapies; track t.id) {
-                <option [ngValue]="t.id">{{ t.name }}</option>
-              }
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="consultSpecializedTreatment" class="form-label">Specialized Treatment</label>
-            <select
-              class="form-select"
-              id="consultSpecializedTreatment"
-              [(ngModel)]="specializedTreatment"
-              name="specializedTreatment"
-              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
-              <option [ngValue]="null">Select Specialized Treatment (Optional)</option>
-              @for (specialty of specializedTreatments; track specialty.id) {
-                <option [ngValue]="specialty.id">{{ specialty.name }}</option>
-              }
-            </select>
-            @if (submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null) {
-              <small class="text-danger">Please select at least one service option</small>
+          @if (hasPreSelection) {
+            <!-- Show only pre-selected field -->
+            @if (preSelectedWellness !== null) {
+              <div class="mb-3">
+                <label for="consultWellnessPackage" class="form-label">Wellness Package <span class="text-danger">*</span></label>
+                <select
+                  class="form-select"
+                  id="consultWellnessPackage"
+                  [(ngModel)]="wellnessPackage"
+                  name="wellnessPackage"
+                  [class.is-invalid]="submitted && wellnessPackage === null">
+                  <option [ngValue]="null">Select Wellness Package</option>
+                  @for (pkg of wellnessPackages; track pkg.id) {
+                    <option [ngValue]="pkg.id">{{ pkg.name }}</option>
+                  }
+                </select>
+              </div>
             }
-          </div>
+
+            @if (preSelectedTreatment !== null) {
+              <div class="mb-3">
+                <label for="consultTreatmentArea" class="form-label">Treatment Area <span class="text-danger">*</span></label>
+                <select
+                  class="form-select"
+                  id="consultTreatmentArea"
+                  [(ngModel)]="treatmentArea"
+                  name="treatmentArea"
+                  [class.is-invalid]="submitted && treatmentArea === null">
+                  <option [ngValue]="null">Select Treatment Area</option>
+                  @for (area of treatmentAreas; track area.id) {
+                    <option [ngValue]="area.id">{{ area.name }}</option>
+                  }
+                </select>
+              </div>
+            }
+
+            @if (preSelectedTherapy !== null) {
+              <div class="mb-3">
+                <label for="consultTherapy" class="form-label">Preferred Therapy <span class="text-danger">*</span></label>
+                <select
+                  class="form-select"
+                  id="consultTherapy"
+                  [(ngModel)]="therapy"
+                  name="therapy"
+                  [class.is-invalid]="submitted && therapy === null">
+                  <option [ngValue]="null">Select Therapy</option>
+                  @for (t of therapies; track t.id) {
+                    <option [ngValue]="t.id">{{ t.name }}</option>
+                  }
+                </select>
+              </div>
+            }
+
+            @if (preSelectedSpecialized !== null) {
+              <div class="mb-3">
+                <label for="consultSpecializedTreatment" class="form-label">Specialized Treatment <span class="text-danger">*</span></label>
+                <select
+                  class="form-select"
+                  id="consultSpecializedTreatment"
+                  [(ngModel)]="specializedTreatment"
+                  name="specializedTreatment"
+                  [class.is-invalid]="submitted && specializedTreatment === null">
+                  <option [ngValue]="null">Select Specialized Treatment</option>
+                  @for (specialty of specializedTreatments; track specialty.id) {
+                    <option [ngValue]="specialty.id">{{ specialty.name }}</option>
+                  }
+                </select>
+              </div>
+            }
+          } @else {
+            <!-- Show all fields when no pre-selection -->
+            <div class="mb-3">
+              <label for="consultWellnessPackage" class="form-label">Wellness Package</label>
+              <select
+                class="form-select"
+                id="consultWellnessPackage"
+                [(ngModel)]="wellnessPackage"
+                name="wellnessPackage"
+                [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+                <option [ngValue]="null">Select Wellness Package (Optional)</option>
+                @for (pkg of wellnessPackages; track pkg.id) {
+                  <option [ngValue]="pkg.id">{{ pkg.name }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="consultTreatmentArea" class="form-label">Treatment Area</label>
+              <select
+                class="form-select"
+                id="consultTreatmentArea"
+                [(ngModel)]="treatmentArea"
+                name="treatmentArea"
+                [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+                <option [ngValue]="null">Select Treatment Area (Optional)</option>
+                @for (area of treatmentAreas; track area.id) {
+                  <option [ngValue]="area.id">{{ area.name }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="consultTherapy" class="form-label">Preferred Therapy</label>
+              <select
+                class="form-select"
+                id="consultTherapy"
+                [(ngModel)]="therapy"
+                name="therapy"
+                [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+                <option [ngValue]="null">Select Therapy (Optional)</option>
+                @for (t of therapies; track t.id) {
+                  <option [ngValue]="t.id">{{ t.name }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="consultSpecializedTreatment" class="form-label">Specialized Treatment</label>
+              <select
+                class="form-select"
+                id="consultSpecializedTreatment"
+                [(ngModel)]="specializedTreatment"
+                name="specializedTreatment"
+                [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+                <option [ngValue]="null">Select Specialized Treatment (Optional)</option>
+                @for (specialty of specializedTreatments; track specialty.id) {
+                  <option [ngValue]="specialty.id">{{ specialty.name }}</option>
+                }
+              </select>
+              @if (submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null) {
+                <small class="text-danger">Please select at least one service option</small>
+              }
+            </div>
+          }
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
