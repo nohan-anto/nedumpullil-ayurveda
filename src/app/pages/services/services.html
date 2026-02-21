@@ -153,7 +153,9 @@
 
           <div class="therapies-grid">
             @for (therapy of therapies; track therapy.id) {
-              <div class="therapy-card">
+              <div class="therapy-card"
+                   [id]="'therapies-' + therapy.id"
+                   [class.highlighted]="highlightedItem?.category === 'therapies' && highlightedItem?.id === therapy.id">
                 <div class="therapy-image">
                   <img [src]="therapy.image" [alt]="therapy.name">
                 </div>
@@ -162,7 +164,9 @@
                   <p class="therapy-subtitle">{{ therapy.subtitle }}</p>
                   <p class="therapy-description">{{ therapy.description }}</p>
                   <div class="therapy-footer">
-                    <a class="book-now-link" (click)="openBookingModal(therapy.id, 'therapy')">
+                    <a class="book-now-link"
+                       [class.glow]="highlightedItem?.category === 'therapies' && highlightedItem?.id === therapy.id"
+                       (click)="openBookingModal(therapy.id, 'therapy')">
                       Book Now
                     </a>
                   </div>
@@ -183,7 +187,9 @@
 
           <div class="specialties-accordion">
             @for (specialty of specializedTreatments; track specialty.id) {
-              <div class="specialty-card">
+              <div class="specialty-card"
+                   [id]="'specialized-' + specialty.id"
+                   [class.highlighted]="highlightedItem?.category === 'specialized' && highlightedItem?.id === specialty.id">
                 <div class="specialty-header" (click)="toggleSpecialty(specialty.id)">
                   <div class="specialty-icon">
                     <i class="bi {{ specialty.icon }}"></i>
@@ -221,7 +227,9 @@
                     </div>
 
                     <div class="specialty-footer">
-                      <a class="book-now-link" (click)="openBookingModal(specialty.id, 'specialized')">
+                      <a class="book-now-link"
+                         [class.glow]="highlightedItem?.category === 'specialized' && highlightedItem?.id === specialty.id"
+                         (click)="openBookingModal(specialty.id, 'specialized')">
                         Book Consultation
                       </a>
                     </div>

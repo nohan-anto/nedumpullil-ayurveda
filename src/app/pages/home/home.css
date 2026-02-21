@@ -6,3 +6,89 @@
 .carousel-indicators li {
   cursor: pointer;
 }
+
+/* Institute Highlight Section */
+.institute-highlight {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color), transparent 92%) 0%, color-mix(in srgb, var(--accent-color), transparent 96%) 100%);
+  border-left: 5px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 30px 35px 35px 35px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(17, 101, 48, 0.1);
+  transition: all 0.3s ease;
+}
+
+.institute-highlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-color), transparent 85%) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.institute-highlight:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 30px rgba(17, 101, 48, 0.15);
+}
+
+.institute-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color) 85%, black 15%) 100%);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(17, 101, 48, 0.25);
+}
+
+.institute-badge i {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.institute-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 15px;
+  font-family: var(--heading-font);
+  line-height: 1.4;
+}
+
+.institute-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--default-color);
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .institute-highlight {
+    padding: 25px 20px;
+  }
+
+  .institute-badge {
+    width: 45px;
+    height: 45px;
+  }
+
+  .institute-badge i {
+    font-size: 20px;
+  }
+
+  .institute-title {
+    font-size: 18px;
+  }
+
+  .institute-text {
+    font-size: 14px;
+  }
+}

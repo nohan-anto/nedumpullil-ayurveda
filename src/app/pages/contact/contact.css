@@ -1,0 +1,246 @@
+/* Map Container */
+.map-container {
+  position: relative;
+}
+
+.map-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.open-maps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  background-color: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(17, 101, 48, 0.3);
+}
+
+.open-maps-btn i {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.open-maps-btn:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 90%, black 10%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(17, 101, 48, 0.4);
+  color: #fff;
+}
+
+.open-maps-btn:hover i {
+  transform: scale(1.2);
+}
+
+/* Contact Info Section */
+.info {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.info h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 15px;
+}
+
+.info > p {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  margin-bottom: 35px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.info-item {
+  padding: 20px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-item i {
+  font-size: 24px;
+  color: var(--accent-color);
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.info-item h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+}
+
+.info-item p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--default-color);
+  line-height: 1.6;
+}
+
+.info-item a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.info-item a:hover {
+  color: color-mix(in srgb, var(--accent-color) 85%, black 15%);
+  text-decoration: underline;
+}
+
+/* Contact Form Wrapper */
+.contact-form-wrapper {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form-wrapper h4 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 10px;
+}
+
+.contact-form-wrapper .form-description {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+/* Form Styles */
+.php-email-form .form-group {
+  margin-bottom: 20px;
+}
+
+.php-email-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--heading-color);
+  font-size: 14px;
+}
+
+.php-email-form .form-control {
+  border-radius: 8px;
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  padding: 12px 18px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.php-email-form .form-control::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  opacity: 1;
+}
+
+.php-email-form .form-control:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 90%);
+  outline: none;
+}
+
+.php-email-form .form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.php-email-form .form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+}
+
+.php-email-form textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.php-email-form .submit-btn {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(17, 101, 48, 0.3);
+}
+
+.php-email-form .submit-btn:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 90%, black 10%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(17, 101, 48, 0.4);
+}
+
+.php-email-form .loading,
+.php-email-form .error-message,
+.php-email-form .sent-message {
+  display: none;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.php-email-form .loading {
+  background: #f8f9fa;
+  color: var(--default-color);
+}
+
+.php-email-form .error-message {
+  background: #fee;
+  color: #c33;
+}
+
+.php-email-form .sent-message {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .open-maps-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .open-maps-btn i {
+    font-size: 18px;
+  }
+
+  .info,
+  .contact-form-wrapper {
+    padding: 30px 20px;
+  }
+
+  .info h3 {
+    font-size: 24px;
+  }
+
+  .contact-form-wrapper h4 {
+    font-size: 20px;
+  }
+
+  .info-item {
+    padding: 15px 0;
+  }
+}

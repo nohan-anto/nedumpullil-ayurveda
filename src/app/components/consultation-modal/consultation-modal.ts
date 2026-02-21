@@ -35,6 +35,13 @@ export class ConsultationModal implements OnInit {
   therapies = THERAPIES;
   specializedTreatments = SPECIALIZED_TREATMENTS;
 
+  get hasPreSelection(): boolean {
+    return this.preSelectedWellness !== null ||
+           this.preSelectedTreatment !== null ||
+           this.preSelectedTherapy !== null ||
+           this.preSelectedSpecialized !== null;
+  }
+
   ngOnInit() {
     // Pre-fill form fields if values are provided
     if (this.preSelectedWellness !== null) {
@@ -58,10 +65,22 @@ export class ConsultationModal implements OnInit {
   submitConsultation() {
     this.submitted = true;
 
-    // Require name, email, phone, and at least one service selection
-    if (!this.name || !this.email || !this.phone ||
-        (!this.wellnessPackage && !this.treatmentArea && !this.therapy && !this.specializedTreatment)) {
+    // Require name, email, phone
+    if (!this.name || !this.email || !this.phone) {
       return;
+    }
+
+    // If there's a pre-selection, require that specific field
+    if (this.hasPreSelection) {
+      if (this.preSelectedWellness !== null && this.wellnessPackage === null) return;
+      if (this.preSelectedTreatment !== null && this.treatmentArea === null) return;
+      if (this.preSelectedTherapy !== null && this.therapy === null) return;
+      if (this.preSelectedSpecialized !== null && this.specializedTreatment === null) return;
+    } else {
+      // If no pre-selection, require at least one service selection
+      if (!this.wellnessPackage && !this.treatmentArea && !this.therapy && !this.specializedTreatment) {
+        return;
+      }
     }
 
     const emailTo = 'doctor@gmail.com';

@@ -14,38 +14,52 @@
       </div>
     </div><!-- End Page Title -->
     <!-- About 2 Section -->
-    <section id="about-2" class="about-3 section">
-  <div class="container">
-    <div class="row gy-4 d-flex align-items-stretch">
+    <section id="about-2" class="vision-mission-section section">
+      <div class="container">
+        <div class="row gy-4">
 
-      <!-- Vision -->
-      <div class="col-lg-6 d-flex" data-aos="fade-up" data-aos-delay="100">
-        <div class="w-100">
-          <h2 class="content-title mb-4">Our Vision</h2>
-          <p>
-            To be recognised globally as the centre of excellence of Authentic 
-            and traditional Kerala Ayurveda and Marma Chikitsa with a modern outlook.
-          </p>
+          <!-- Vision -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="vision-mission-card vision-card">
+              <div class="card-icon">
+                <i class="bi bi-eye"></i>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Our Vision</h2>
+                <div class="title-underline"></div>
+                <p class="card-text">
+                  To be recognised globally as the centre of excellence of Authentic
+                  and traditional Kerala Ayurveda and Marma Chikitsa with a modern outlook.
+                </p>
+              </div>
+              <div class="card-corner"></div>
+            </div>
+          </div>
+
+          <!-- Mission -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="vision-mission-card mission-card">
+              <div class="card-icon">
+                <i class="bi bi-flag"></i>
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">Our Mission</h2>
+                <div class="title-underline"></div>
+                <p class="card-text">
+                  We understand health is a state of physical, mental and social well being
+                  and individuals are complex combination of elements of nature. Our emphasis is to
+                  enhance health in individuals and prevent from getting disease through the goodness of
+                  ancient traditional Kerala Ayurveda Incorporating the modern science and technology.
+                  Let whole world be healthy and wealthy "Lokha Samastha Sukhino Bhavanthu."
+                </p>
+              </div>
+              <div class="card-corner"></div>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <!-- Mission -->
-      <div class="col-lg-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-        <div class="w-100">
-          <h2 class="content-title mb-4">Our Mission</h2>
-          <p>
-            We understand health is a state of physical, mental and social well being 
-            and individuals are complex combination of elements of nature. Our emphasis is to 
-            enhance health in individuals and prevent from getting disease through the goodness of 
-            ancient traditional Kerala Ayurveda Incorporating the modern science and technology. 
-            Let whole world be healthy and wealthy “Lokha Samastha Sukhino Bhavanthu.”
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
     <!-- About 3 Section -->
     <section id="about-3" class="about-3 section">
       <div class="container">
@@ -71,7 +85,7 @@
               <li>Yoga & Meditation for Holistic Healing</li>
             </ul>
 
-            <p><a href="#" class="btn-cta">Book Consultation</a></p>
+            <p><a (click)="openConsultationModal()" class="btn-cta" style="cursor: pointer;">Book Consultation</a></p>
           </div>
         </div>
       </div>
@@ -120,16 +134,16 @@
             <div class="col-md-6 mb-4">
               <ul class="list-unstyled">
                 <li>
-                  <h5 class="fw-bold">• Education & Specialization</h5>
+                  <h5>Education & Specialization</h5>
                   <p>
-                    BAMS from Amrita School of Ayurveda with advanced training in Marma 
+                    BAMS from Amrita School of Ayurveda with advanced training in Marma
                     Chikitsa, combining traditional knowledge with modern integrative medicine approaches
                   </p>
                 </li>
                 <li>
-                  <h5 class="fw-bold">• Rich Clinical Experience</h5>
+                  <h5>Rich Clinical Experience</h5>
                   <p>
-                    Extensive practice in Ayurvedic sports medicine, ortho-neuro rehabilitation, 
+                    Extensive practice in Ayurvedic sports medicine, ortho-neuro rehabilitation,
                     pregnancy and postnatal care, stress management, and wellness consulting across
                     Kerala and Karnataka
                   </p>
@@ -141,16 +155,16 @@
             <div class="col-md-6 mb-4">
               <ul class="list-unstyled">
                 <li>
-                  <h5 class="fw-bold">• Integrative Approach</h5>
+                  <h5>Integrative Approach</h5>
                   <p>
                     Incorporates traditional folklore knowledge with Ayurvedic principles,
                     serving as a researcher and practitioner in integrative medicine and holistic healing
                   </p>
                 </li>
                  <li>
-                  <h5 class="fw-bold">• Wellness Advocate</h5>
+                  <h5>Wellness Advocate</h5>
                   <p>
-                    Organizes yoga and wellness events, promoting holistic health 
+                    Organizes yoga and wellness events, promoting holistic health
                     through community engagement and educational programs
                   </p>
                 </li>
@@ -168,3 +182,7 @@
     <!-- /Team Section -->
 
   </main>
+
+  @if (showConsultationModal) {
+    <app-consultation-modal (close)="closeConsultationModal()"></app-consultation-modal>
+  }
