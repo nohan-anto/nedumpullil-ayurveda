@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-contact',
@@ -15,6 +16,8 @@ export class Contact {
   subject: string = '';
   message: string = '';
   submitted: boolean = false;
+
+  constructor(private toastService: ToastService) {}
 
   submitContactForm() {
     this.submitted = true;
@@ -34,6 +37,9 @@ export class Contact {
       phoneText +
       `\nMessage:\n${this.message}`
     );
+
+    // Show toast notification
+    this.toastService.info('Opening your mail app...', 2500);
 
     window.location.href = `mailto:${emailTo}?subject=${emailSubject}&body=${body}`;
 

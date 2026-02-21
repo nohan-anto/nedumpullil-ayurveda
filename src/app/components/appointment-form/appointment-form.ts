@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-appointment-form',
@@ -24,6 +25,8 @@ export class AppointmentForm {
     { code: '+65', country: 'Singapore' },
     { code: '+60', country: 'Malaysia' },
   ];
+
+  constructor(private toastService: ToastService) {}
 
   getTomorrowDate(): string {
     const tomorrow = new Date();
@@ -54,6 +57,9 @@ export class AppointmentForm {
       `Please confirm the appointment or suggest an alternative time.\n\n` +
       `Thank you,\n${this.patientName}`
     );
+
+    // Show toast notification
+    this.toastService.info('Opening your mail app...', 2500);
 
     window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
 
