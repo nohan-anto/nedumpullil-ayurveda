@@ -1,0 +1,118 @@
+<div class="modal fade show d-block" tabindex="-1" role="dialog">
+  <div class="modal-backdrop fade show" (click)="closeModal()"></div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Book Consultation</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="submitConsultation()" novalidate>
+          <div class="mb-3">
+            <label for="consultName" class="form-label">Name <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="consultName"
+              [(ngModel)]="name"
+              name="name"
+              [class.is-invalid]="submitted && !name"
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="consultEmail" class="form-label">Email <span class="text-danger">*</span></label>
+            <input
+              type="email"
+              class="form-control"
+              id="consultEmail"
+              [(ngModel)]="email"
+              name="email"
+              [class.is-invalid]="submitted && !email"
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="consultPhone" class="form-label">Phone <span class="text-danger">*</span></label>
+            <input
+              type="tel"
+              class="form-control"
+              id="consultPhone"
+              [(ngModel)]="phone"
+              name="phone"
+              [class.is-invalid]="submitted && !phone"
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="consultWellnessPackage" class="form-label">Wellness Package</label>
+            <select
+              class="form-select"
+              id="consultWellnessPackage"
+              [(ngModel)]="wellnessPackage"
+              name="wellnessPackage"
+              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+              <option [ngValue]="null">Select Wellness Package (Optional)</option>
+              @for (pkg of wellnessPackages; track pkg.id) {
+                <option [ngValue]="pkg.id">{{ pkg.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="consultTreatmentArea" class="form-label">Treatment Area</label>
+            <select
+              class="form-select"
+              id="consultTreatmentArea"
+              [(ngModel)]="treatmentArea"
+              name="treatmentArea"
+              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+              <option [ngValue]="null">Select Treatment Area (Optional)</option>
+              @for (area of treatmentAreas; track area.id) {
+                <option [ngValue]="area.id">{{ area.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="consultTherapy" class="form-label">Preferred Therapy</label>
+            <select
+              class="form-select"
+              id="consultTherapy"
+              [(ngModel)]="therapy"
+              name="therapy"
+              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+              <option [ngValue]="null">Select Therapy (Optional)</option>
+              @for (t of therapies; track t.id) {
+                <option [ngValue]="t.id">{{ t.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="consultSpecializedTreatment" class="form-label">Specialized Treatment</label>
+            <select
+              class="form-select"
+              id="consultSpecializedTreatment"
+              [(ngModel)]="specializedTreatment"
+              name="specializedTreatment"
+              [class.is-invalid]="submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null">
+              <option [ngValue]="null">Select Specialized Treatment (Optional)</option>
+              @for (specialty of specializedTreatments; track specialty.id) {
+                <option [ngValue]="specialty.id">{{ specialty.name }}</option>
+              }
+            </select>
+            @if (submitted && wellnessPackage === null && treatmentArea === null && therapy === null && specializedTreatment === null) {
+              <small class="text-danger">Please select at least one service option</small>
+            }
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

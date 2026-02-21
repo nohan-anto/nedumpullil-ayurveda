@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { GlightboxService } from '../../services/glightbox';
 import { SwiperService } from '../../services/swiper';
 import { AppointmentForm } from '../../components/appointment-form/appointment-form';
+import { ConsultationModal } from '../../components/consultation-modal/consultation-modal';
 
 interface BlogPost {
   image: string;
@@ -56,7 +57,7 @@ interface Therapy {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterLink, AppointmentForm],
+  imports: [CommonModule, RouterLink, AppointmentForm, ConsultationModal],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -65,6 +66,7 @@ export class Home implements AfterViewInit, OnDestroy {
   private therapyInterval: any;
   currentSlide = 0;
   currentTherapy = 0;
+  showConsultationModal = false;
 
   heroSlides: HeroSlide[] = [
     {
@@ -398,5 +400,13 @@ export class Home implements AfterViewInit, OnDestroy {
     this.therapyInterval = setInterval(() => {
       this.nextTherapy();
     }, 4000);
+  }
+
+  openConsultationModal() {
+    this.showConsultationModal = true;
+  }
+
+  closeConsultationModal() {
+    this.showConsultationModal = false;
   }
 }
