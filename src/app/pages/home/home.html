@@ -143,7 +143,7 @@
               <li>Perfect harmony with nature</li>
             </ul>
 
-            <p><a href="#contact" class="btn-cta">Book Consultation</a></p>
+            <p><a (click)="openConsultationModal()" class="btn-cta" style="cursor: pointer;">Book Consultation</a></p>
           </div>
         </div>
       </div>
@@ -294,3 +294,7 @@
     </section><!-- /Call To Action Section -->
 
   </main>
+
+  @if (showConsultationModal) {
+    <app-consultation-modal (close)="closeConsultationModal()"></app-consultation-modal>
+  }
